@@ -1,6 +1,7 @@
 package com.yoon.pocket.config.auth;
 
 import com.yoon.pocket.entity.user.Role;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +10,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configurable
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomOAuthUserService customOAuth2UserService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http

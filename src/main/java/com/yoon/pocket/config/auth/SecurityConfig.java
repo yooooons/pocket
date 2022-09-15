@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configurable
 @EnableWebSecurity
@@ -26,7 +27,9 @@ public class SecurityConfig {
                 .antMatchers("/api/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
+
                 .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login()

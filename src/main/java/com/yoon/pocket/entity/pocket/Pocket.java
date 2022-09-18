@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.time.YearMonth;
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +20,9 @@ public class Pocket {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(nullable = false)
+    private YearMonth yearMonth;
 
     @Column(nullable = false)
     @Min(value = 0L, message = "0원 이상만 가능합니다.")
